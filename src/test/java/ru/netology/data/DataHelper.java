@@ -36,7 +36,7 @@ public class DataHelper {
         QueryRunner runner = new QueryRunner();
         String deleteOldAuthCode = "DELETE FROM auth_codes WHERE created < NOW() - INTERVAL 2 SECOND ;" ;
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/app_db", "user", "12345678"
+                "jdbc:mysql://localhost:3306/app_db", "user", "pass"
         );
         runner.update(conn, deleteOldAuthCode);
     }
@@ -49,7 +49,7 @@ public class DataHelper {
         String login = user.getLogin();
         String userIdSQL = "SELECT id FROM users WHERE login =" + " " + "'" + login + "'" + ";";
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/app_db", "user", "12345678"
+                "jdbc:mysql://localhost:3306/app_db", "user", "pass"
                 );
         String userId = runner.query(conn, userIdSQL,new ScalarHandler<>());
         String authCodesSQL = "SELECT code FROM auth_codes WHERE user_id =" + " " + "'" + userId + "'" + ";" ;
@@ -64,7 +64,7 @@ public class DataHelper {
         String deleteAllCards = "DELETE FROM cards;" ;
         String deleteAllUsers = "DELETE FROM users;" ;
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/app_db", "user", "12345678"
+                "jdbc:mysql://localhost:3306/app_db", "user", "pass"
         );
         runner.update(conn, deleteAllAuthCode);
         runner.update(conn, deleteAllCards);
